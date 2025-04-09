@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -41,7 +40,7 @@
   * {
     @apply border-border;
   }
-  
+
   html {
     @apply scroll-smooth;
   }
@@ -50,23 +49,28 @@
     @apply bg-miczone-dark text-foreground antialiased overflow-x-hidden;
     font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
   }
-  
-  h1, h2, h3, h4, h5, h6 {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-bold tracking-tight;
   }
-  
+
   h1 {
     @apply text-4xl md:text-5xl lg:text-6xl;
   }
-  
+
   h2 {
     @apply text-3xl md:text-4xl lg:text-5xl;
   }
-  
+
   h3 {
     @apply text-2xl md:text-3xl;
   }
-  
+
   p {
     @apply leading-relaxed;
   }
@@ -76,43 +80,47 @@
   .container-custom {
     @apply max-w-[1400px] mx-auto px-4 md:px-6 lg:px-8;
   }
-  
+
+  .gallery-container {
+    @apply max-w-[1800px] mx-auto px-2 md:px-4;
+  }
+
   .nav-item {
     @apply px-4 py-2 text-sm font-medium transition-colors text-gray-300 hover:text-white relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-miczone-accent after:transition-all hover:after:w-full;
   }
-  
+
   .nav-item.active {
     @apply text-white after:w-full;
   }
-  
+
   .section {
     @apply min-h-screen py-16 md:py-24;
   }
-  
+
   .section-title {
     @apply mb-8 md:mb-10 text-center;
   }
-  
+
   .section-title h2 {
     @apply inline-block text-white mb-2 relative after:content-[''] after:absolute after:h-[3px] after:w-2/3 after:bg-miczone-accent after:bottom-0 after:left-1/2 after:-translate-x-1/2;
   }
-  
+
   .section-title p {
     @apply text-gray-400 max-w-2xl mx-auto;
   }
-  
+
   .btn-primary {
     @apply bg-miczone-accent text-white py-2 px-6 rounded-md transition-all duration-300 inline-block hover:bg-miczone-accenthover;
   }
-  
+
   .image-wrapper {
     @apply relative overflow-hidden rounded-lg;
   }
-  
+
   .image-wrapper img {
     @apply w-full h-full object-cover transition-all duration-500 hover:scale-110;
   }
-  
+
   .glass-card {
     @apply bg-black/30 backdrop-blur-md border border-white/10 rounded-lg;
   }

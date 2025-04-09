@@ -1,5 +1,8 @@
-
-import React from 'react';
+import React from "react";
+import img1 from "../images/1e.png";
+import img2 from "../images/2e.png";
+import img3 from "../images/3e.png";
+import img4 from "../images/4e.png";
 
 interface Event {
   id: number;
@@ -7,83 +10,170 @@ interface Event {
   artist: string;
   date: string;
   location: string;
+  description?: string;
   image: string;
+  isPast?: boolean;
 }
 
 const Events: React.FC = () => {
-  const upcomingEvents: Event[] = [
+  const events: Event[] = [
+    {
+      id: 4,
+      title: "Miczone Next Wave",
+      artist: "DJ SET ED ESIBIZIONI LIVE",
+      date: "6 Aprile, 2025",
+      location: "Lizard Club",
+      description:
+        "Una serata unica con esibizioni live e dj set. Un mix esplosivo di musica dal vivo.",
+      image: img4,
+      isPast: false,
+    },
     {
       id: 1,
-      title: "Summer Beats Festival",
-      artist: "Multiple Artists",
-      date: "Aug 15, 2024",
-      location: "Central Park",
-      image: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80"
+      title: "Next Wave",
+      artist: "Live Music & Dj Set",
+      date: "15 Dicembre, 2024",
+      location: "",
+      image: img1,
+      isPast: true,
     },
     {
       id: 2,
-      title: "Night of Jazz",
-      artist: "The Smooth Quartet",
-      date: "Sept 3, 2024",
-      location: "Blue Note Club",
-      image: "https://images.unsplash.com/photo-1511192336575-5a79af67a629?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1772&q=80"
+      title: "Next Wave",
+      artist: "Live Music & Dj Set",
+      date: "19 Gennaio, 2025",
+      location: "",
+      image: img2,
+      isPast: true,
     },
     {
       id: 3,
-      title: "Electronic Dreams",
-      artist: "DJ Pulsar",
-      date: "Sept 17, 2024",
-      location: "Neon Arena",
-      image: "https://images.unsplash.com/photo-1571751239008-50cad5827908?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80"
+      title: "Next Wave",
+      artist: "Live Music & Dj Set",
+      date: "9 Febbraio, 2025",
+      location: "Lizard Club",
+      image: img3,
+      isPast: true,
     },
-    {
-      id: 4,
-      title: "Rock Legends Tour",
-      artist: "Thunderstrike",
-      date: "Oct 5, 2024",
-      location: "Stadium Arena",
-      image: "https://images.unsplash.com/photo-1468164016595-6108e4c60c8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80"
-    }
   ];
+
+  const futureEvents = events.filter((event) => !event.isPast);
+  const pastEvents = events.filter((event) => event.isPast);
 
   return (
     <section id="events" className="section bg-miczone-black py-20">
       <div className="container-custom">
-        <div className="section-title">
-          <h2 className="opacity-0 animate-fade-in" style={{ animationDelay: '0.1s' }}>Upcoming Events</h2>
-          <p className="opacity-0 animate-fade-in" style={{ animationDelay: '0.2s' }}>Mark your calendar for these incredible live performances</p>
+        {/* Sezione Eventi Futuri */}
+        <div className="section-title mb-16">
+          <h2
+            className="opacity-0 animate-fade-in"
+            style={{ animationDelay: "0.1s" }}
+          >
+            Prossimo Evento
+          </h2>
+          <p
+            className="opacity-0 animate-fade-in"
+            style={{ animationDelay: "0.2s" }}
+          >
+            Non perdere la nostra prossima serata esclusiva al Lizard Club
+          </p>
         </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
-          {upcomingEvents.map((event, index) => (
-            <div 
-              key={event.id} 
+
+        <div className="grid grid-cols-1 gap-6 mb-20">
+          {futureEvents.map((event, index) => (
+            <div
+              key={event.id}
+              className="glass-card overflow-hidden opacity-0 animate-scale-in"
+              style={{ animationDelay: `${0.3 + index * 0.1}s` }}
+            >
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="image-wrapper h-64 md:h-full">
+                  <img
+                    src={event.image}
+                    alt={event.title}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="p-6 flex flex-col justify-center">
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-lg text-miczone-accent font-semibold">
+                      {event.date}
+                    </span>
+                    <span className="text-lg text-gray-400">
+                      {event.location}
+                    </span>
+                  </div>
+                  <h3 className="text-2xl font-bold mb-3 text-white">
+                    {event.title}
+                  </h3>
+                  <p className="text-lg text-gray-400 mb-3">{event.artist}</p>
+                  {event.description && (
+                    <p className="text-sm text-gray-400 mb-6">
+                      {event.description}
+                    </p>
+                  )}
+                  <a
+                    href="https://www.instagram.com/miczone_/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-primary text-lg w-full md:w-auto text-center"
+                  >
+                    Prenota Ora
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Sezione Eventi Passati */}
+        <div className="section-title mt-20">
+          <h2
+            className="opacity-0 animate-fade-in"
+            style={{ animationDelay: "0.1s" }}
+          >
+            Eventi Passati
+          </h2>
+          <p
+            className="opacity-0 animate-fade-in"
+            style={{ animationDelay: "0.2s" }}
+          >
+            Rivivi i nostri momenti più belli
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+          {pastEvents.map((event, index) => (
+            <div
+              key={event.id}
               className="glass-card overflow-hidden opacity-0 animate-scale-in"
               style={{ animationDelay: `${0.3 + index * 0.1}s` }}
             >
               <div className="image-wrapper h-48">
-                <img 
-                  src={event.image} 
-                  alt={event.title} 
+                <img
+                  src={event.image}
+                  alt={event.title}
                   className="w-full h-full object-cover"
                   loading="lazy"
                 />
               </div>
               <div className="p-5">
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-xs text-miczone-accent font-semibold">{event.date}</span>
-                  <span className="text-xs text-gray-400">{event.location}</span>
+                  <span className="text-xs text-miczone-accent font-semibold">
+                    {event.date}
+                  </span>
+                  <span className="text-xs text-gray-400">
+                    {event.location}
+                  </span>
                 </div>
-                <h3 className="text-lg font-bold mb-1 text-white">{event.title}</h3>
-                <p className="text-sm text-gray-400 mb-4">{event.artist}</p>
-                <button className="w-full btn-primary text-sm">Get Tickets</button>
+                <h3 className="text-lg font-bold mb-1 text-white">
+                  {event.title}
+                </h3>
+                <p className="text-sm text-gray-400">{event.artist}</p>
               </div>
             </div>
           ))}
-        </div>
-        
-        <div className="mt-12 text-center opacity-0 animate-fade-in" style={{ animationDelay: '0.7s' }}>
-          <button className="btn-primary">View All Events</button>
         </div>
       </div>
     </section>
