@@ -63,12 +63,25 @@ export default {
           ring: "hsl(var(--sidebar-ring))",
         },
         miczone: {
-          dark: "#121212",
-          black: "#000000",
-          gray: "#1E1E1E",
-          lightgray: "#2A2A2A",
-          accent: "#008f39",
-          accenthover: "#4d5645",
+          dark: "#0F0F13",
+          black: "#070709",
+          gray: "#1A1A22",
+          lightgray: "#2A2A36",
+          accent: "#fac907",
+          accenthover: "#e0b506",
+          accentlight: "#ffd428",
+          secondary: "#8A2BE2",
+          secondaryhover: "#7B26CC",
+          tertiary: "#FF3366",
+          text: {
+            primary: "#FFFFFF",
+            secondary: "#CCCCDD",
+            muted: "#9999AA",
+          },
+          border: {
+            light: "rgba(255,255,255,0.1)",
+            accent: "rgba(250,201,7,0.3)",
+          },
         },
       },
       borderRadius: {
@@ -97,6 +110,14 @@ export default {
           "0%": { transform: "translateX(100%)" },
           "100%": { transform: "translateX(0)" },
         },
+        slideInLeft: {
+          "0%": { transform: "translateX(-100%)" },
+          "100%": { transform: "translateX(0)" },
+        },
+        slideInUp: {
+          "0%": { transform: "translateY(20px)", opacity: "0" },
+          "100%": { transform: "translateY(0)", opacity: "1" },
+        },
         pulse: {
           "0%, 100%": { opacity: "1" },
           "50%": { opacity: "0.5" },
@@ -105,6 +126,18 @@ export default {
           "0%, 100%": { transform: "translateY(0)" },
           "50%": { transform: "translateY(-10px)" },
         },
+        shimmer: {
+          "0%": { backgroundPosition: "-200% 0" },
+          "100%": { backgroundPosition: "200% 0" },
+        },
+        glow: {
+          "0%, 100%": { boxShadow: "0 0 5px rgba(250, 201, 7, 0.5)" },
+          "50%": { boxShadow: "0 0 20px rgba(250, 201, 7, 0.8)" },
+        },
+        rotate: {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(360deg)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -112,8 +145,27 @@ export default {
         "fade-in": "fadeIn 0.5s ease-out forwards",
         "scale-in": "scaleIn 0.4s ease-out forwards",
         "slide-in-right": "slideInRight 0.6s ease-out forwards",
+        "slide-in-left": "slideInLeft 0.6s ease-out forwards",
+        "slide-in-up": "slideInUp 0.5s ease-out forwards",
         "pulse-slow": "pulse 3s infinite",
         float: "float 6s ease-in-out infinite",
+        shimmer: "shimmer 2s linear infinite",
+        glow: "glow 2s ease-in-out infinite",
+        rotate: "rotate 8s linear infinite",
+      },
+      backgroundImage: {
+        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+        "gradient-conic":
+          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        noise:
+          "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E\")",
+      },
+      boxShadow: {
+        neon: "0 0 5px rgba(250, 201, 7, 0.2), 0 0 20px rgba(250, 201, 7, 0.2), 0 0 60px rgba(250, 201, 7, 0.1)",
+        "neon-hover":
+          "0 0 5px rgba(250, 201, 7, 0.5), 0 0 20px rgba(250, 201, 7, 0.3), 0 0 60px rgba(250, 201, 7, 0.2)",
+        "neon-purple":
+          "0 0 5px rgba(138, 43, 226, 0.2), 0 0 20px rgba(138, 43, 226, 0.2), 0 0 60px rgba(138, 43, 226, 0.1)",
       },
     },
   },

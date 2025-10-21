@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import GalleryImage from "./GalleryImage";
 
@@ -24,17 +24,45 @@ const images = [
 ];
 
 const Gallery: React.FC = () => {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    // Trigger animations after component mounts
+    setIsLoaded(true);
+  }, []);
+
   return (
-    <section className="section !py-12" id="gallery">
-      <div className="gallery-container">
+    <section className="section !py-12 relative" id="gallery">
+      {/* Background decorative elements */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+        <div className="absolute top-[10%] left-[5%] w-32 h-32 bg-miczone-secondary/10 rounded-full blur-3xl animate-pulse-slow"></div>
+        <div className="absolute bottom-[20%] right-[10%] w-40 h-40 bg-miczone-accent/10 rounded-full blur-3xl animate-pulse-slow"></div>
+      </div>
+
+      <div className="gallery-container relative z-10">
         <div className="section-title mb-8">
-          <h2>La Nostra Galleria</h2>
-          <p>Scopri i nostri momenti più belli</p>
+          <h2
+            className={`${isLoaded ? "animate-fade-in" : "opacity-0"}`}
+            style={{ animationDelay: "0.1s" }}
+          >
+            La Nostra <span className="gradient-text">Galleria</span>
+          </h2>
+          <p
+            className={`${isLoaded ? "animate-fade-in" : "opacity-0"}`}
+            style={{ animationDelay: "0.2s" }}
+          >
+            Scopri i nostri momenti più belli
+          </p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-0">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
           {images.map((image, index) => (
-            <div key={index} className="aspect-square overflow-hidden">
-              <GalleryImage src={image.src} alt={image.alt} index={index} />
+            <div key={index} className="aspect-square overflow-hidden p-1">
+              <GalleryImage
+                src={image.src}
+                alt={image.alt}
+                index={index}
+                isVisible={isLoaded}
+              />
             </div>
           ))}
         </div>

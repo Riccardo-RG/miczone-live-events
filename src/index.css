@@ -46,8 +46,15 @@
   }
 
   body {
-    @apply bg-miczone-dark text-foreground antialiased overflow-x-hidden;
+    @apply bg-miczone-dark text-miczone-text-primary antialiased overflow-x-hidden;
     font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
+    background-image: linear-gradient(
+        to bottom,
+        rgba(15, 15, 19, 0.97),
+        rgba(15, 15, 19, 0.97)
+      ),
+      url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    background-attachment: fixed;
   }
 
   h1,
@@ -56,15 +63,18 @@
   h4,
   h5,
   h6 {
-    @apply font-bold tracking-tight;
+    @apply font-bold tracking-tight text-miczone-text-primary;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   }
 
   h1 {
     @apply text-4xl md:text-5xl lg:text-6xl;
+    letter-spacing: -0.02em;
   }
 
   h2 {
     @apply text-3xl md:text-4xl lg:text-5xl;
+    letter-spacing: -0.01em;
   }
 
   h3 {
@@ -72,7 +82,11 @@
   }
 
   p {
-    @apply leading-relaxed;
+    @apply leading-relaxed text-miczone-text-secondary;
+  }
+
+  a {
+    @apply transition-colors duration-200;
   }
 }
 
@@ -86,15 +100,17 @@
   }
 
   .nav-item {
-    @apply px-4 py-2 text-sm font-medium transition-colors text-gray-300 hover:text-white relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-miczone-accent after:transition-all hover:after:w-full;
+    @apply px-4 py-2 text-sm font-medium transition-colors text-miczone-text-secondary hover:text-miczone-text-primary relative
+           after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-miczone-accent after:transition-all
+           hover:after:w-full hover:after:shadow-neon;
   }
 
   .nav-item.active {
-    @apply text-white after:w-full;
+    @apply text-miczone-text-primary after:w-full after:shadow-neon;
   }
 
   .section {
-    @apply min-h-screen py-16 md:py-24;
+    @apply min-h-screen py-16 md:py-24 relative;
   }
 
   .section-title {
@@ -102,15 +118,34 @@
   }
 
   .section-title h2 {
-    @apply inline-block text-white mb-2 relative after:content-[''] after:absolute after:h-[3px] after:w-2/3 after:bg-miczone-accent after:bottom-0 after:left-1/2 after:-translate-x-1/2;
+    @apply inline-block text-miczone-text-primary mb-2 relative
+           after:content-[''] after:absolute after:h-[3px] after:w-2/3 after:bg-miczone-accent
+           after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:shadow-neon;
   }
 
   .section-title p {
-    @apply text-gray-400 max-w-2xl mx-auto;
+    @apply text-miczone-text-secondary max-w-2xl mx-auto;
   }
 
   .btn-primary {
-    @apply bg-miczone-accent text-white py-2 px-6 rounded-md transition-all duration-300 inline-block hover:bg-miczone-accenthover;
+    @apply bg-miczone-accent text-white py-2 px-6 rounded-md transition-all duration-300 inline-block
+           hover:bg-miczone-accenthover shadow-sm hover:shadow-neon-hover relative overflow-hidden
+           before:absolute before:inset-0 before:w-full before:h-full before:bg-gradient-to-r
+           before:from-transparent before:via-white/20 before:to-transparent before:translate-x-[-200%]
+           hover:before:animate-shimmer;
+  }
+
+  .btn-secondary {
+    @apply bg-miczone-secondary text-white py-2 px-6 rounded-md transition-all duration-300 inline-block
+           hover:bg-miczone-secondaryhover shadow-sm hover:shadow-neon-purple relative overflow-hidden
+           before:absolute before:inset-0 before:w-full before:h-full before:bg-gradient-to-r
+           before:from-transparent before:via-white/20 before:to-transparent before:translate-x-[-200%]
+           hover:before:animate-shimmer;
+  }
+
+  .btn-outline {
+    @apply border border-miczone-accent text-miczone-accent py-2 px-6 rounded-md transition-all duration-300
+           inline-block hover:bg-miczone-accent/10 hover:text-miczone-accentlight hover:border-miczone-accentlight;
   }
 
   .image-wrapper {
@@ -118,11 +153,30 @@
   }
 
   .image-wrapper img {
-    @apply w-full h-full object-cover transition-all duration-500 hover:scale-110;
+    @apply w-full h-full transition-all duration-500 hover:scale-105;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 5px;
   }
 
   .glass-card {
-    @apply bg-black/30 backdrop-blur-md border border-white/10 rounded-lg;
+    @apply bg-miczone-black/60 backdrop-blur-md border border-miczone-border-light rounded-lg shadow-lg
+           hover:border-miczone-border-accent transition-all duration-300;
+  }
+
+  .glass-card-accent {
+    @apply bg-miczone-black/60 backdrop-blur-md border border-miczone-border-accent rounded-lg shadow-neon;
+  }
+
+  .highlight-text {
+    @apply text-miczone-accent font-semibold;
+  }
+
+  .gradient-text {
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-miczone-accent to-miczone-accentlight;
+  }
+
+  .card-hover-effect {
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-lg;
   }
 }
 
@@ -141,4 +195,38 @@
 
 ::-webkit-scrollbar-thumb:hover {
   @apply bg-miczone-accenthover;
+}
+
+/* Custom selection color */
+::selection {
+  @apply bg-miczone-accent/30 text-white;
+}
+
+/* Custom focus styles */
+:focus-visible {
+  @apply outline-none ring-2 ring-miczone-accent ring-offset-1 ring-offset-miczone-black;
+}
+
+/* Animated background for special elements */
+.animated-bg {
+  @apply relative overflow-hidden;
+}
+
+.animated-bg::before {
+  content: "";
+  @apply absolute inset-0 bg-gradient-to-r from-miczone-accent/10 via-miczone-secondary/10 to-miczone-accent/10 bg-[length:200%_100%] animate-shimmer;
+}
+
+/* Glow effect for important elements */
+.glow-effect {
+  @apply relative;
+}
+
+.glow-effect::after {
+  content: "";
+  @apply absolute inset-0 rounded-lg opacity-0 transition-opacity duration-300 shadow-neon pointer-events-none;
+}
+
+.glow-effect:hover::after {
+  @apply opacity-100;
 }

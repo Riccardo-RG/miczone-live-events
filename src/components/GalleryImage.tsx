@@ -1,17 +1,22 @@
-
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from "react";
 
 interface GalleryImageProps {
   src: string;
   alt: string;
   index: number;
+  isVisible?: boolean;
 }
 
-const GalleryImage: React.FC<GalleryImageProps> = ({ src, alt, index }) => {
+const GalleryImage: React.FC<GalleryImageProps> = ({
+  src,
+  alt,
+  index,
+  isVisible = true,
+}) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isInView, setIsInView] = useState(false);
   const imageRef = useRef<HTMLDivElement>(null);
-  
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -22,36 +27,43 @@ const GalleryImage: React.FC<GalleryImageProps> = ({ src, alt, index }) => {
       },
       { threshold: 0.1 }
     );
-    
+
     if (imageRef.current) {
       observer.observe(imageRef.current);
     }
-    
+
     return () => observer.disconnect();
   }, []);
-  
+
   const handleImageLoad = () => {
     setIsLoaded(true);
   };
-  
+
   return (
-    <div 
+    <div
+      className={`group image-wrapper overflow-hidden rounded-lg aspect-square relative ${
+        isVisible ? "animate-scale-in" : "opacity-0"
+      }`}
       ref={imageRef}
-      className="image-wrapper overflow-hidden rounded-lg aspect-square relative opacity-0 animate-scale-in"
-      style={{ 
+      style={{
         animationDelay: `${0.1 + index * 0.05}s`,
-        animationPlayState: isInView ? 'running' : 'paused'
+        animationPlayState: isInView ? "running" : "paused",
       }}
     >
       {!isLoaded && (
-        <div className="absolute inset-0 bg-miczone-gray animate-pulse flex items-center justify-center">
-          <div className="w-8 h-8 border-4 border-miczone-accent/30 border-t-miczone-accent rounded-full animate-spin"></div>
+        <div className="absolute inset-0 bg-miczone-gray/50 backdrop-blur-sm animate-pulse flex items-center justify-center">
+          <div className="w-8 h-8 border-4 border-miczone-accent/30 border-t-miczone-accent rounded-full animate-spin shadow-neon"></div>
         </div>
       )}
+
+      {/* Overlay effect on hover */}
+      <div className="absolute inset-0 bg-gradient-to-t from-miczone-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center p-4">
+        <p className="text-white text-sm font-medium">{alt}</p>
+      </div>
       <img
         src={src}
         alt={alt}
-        className="w-full h-full object-cover transition-all duration-500 hover:scale-110"
+        className="w-full h-full object-cover transition-all duration-500 group-hover:scale-110"
         style={{ opacity: isLoaded ? 1 : 0 }}
         loading="lazy"
         onLoad={handleImageLoad}
