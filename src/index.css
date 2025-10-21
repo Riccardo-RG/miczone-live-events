@@ -128,10 +128,10 @@
   }
 
   .btn-primary {
-    @apply bg-miczone-accent text-white py-2 px-6 rounded-md transition-all duration-300 inline-block
+    @apply bg-miczone-accent text-black font-medium py-2 px-6 rounded-md transition-all duration-300 inline-block
            hover:bg-miczone-accenthover shadow-sm hover:shadow-neon-hover relative overflow-hidden
            before:absolute before:inset-0 before:w-full before:h-full before:bg-gradient-to-r
-           before:from-transparent before:via-white/20 before:to-transparent before:translate-x-[-200%]
+           before:from-transparent before:via-black/10 before:to-transparent before:translate-x-[-200%]
            hover:before:animate-shimmer;
   }
 
