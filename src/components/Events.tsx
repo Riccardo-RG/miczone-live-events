@@ -111,18 +111,18 @@ const Events: React.FC = () => {
             futureEvents.map((event, index) => (
               <div
                 key={event.id}
-                className={`glass-card-accent overflow-hidden card-hover-effect backdrop-blur-xl p-4 sm:p-6 md:p-8 ${
+                className={`glass-card-accent overflow-hidden card-hover-effect backdrop-blur-xl p-6 sm:p-8 md:p-10 ${
                   isLoaded ? "animate-scale-in" : "opacity-0"
                 }`}
                 style={{ animationDelay: `${0.3 + index * 0.1}s` }}
               >
                 <div className="flex flex-col gap-8">
-                  <div className="image-wrapper w-full relative rounded-lg overflow-hidden bg-miczone-black/30 -mx-4 sm:-mx-6 md:-mx-8 sm:mx-0">
-                    <div className="aspect-[4/5] sm:aspect-[16/9] md:aspect-[2/1] lg:aspect-[21/9]">
+                  <div className="image-wrapper w-full relative rounded-xl overflow-hidden bg-miczone-black/30">
+                    <div className="aspect-[4/5] sm:aspect-[16/9] md:aspect-[2/1] lg:aspect-[21/9] p-4 sm:p-6 md:p-8">
                       <img
                         src={event.image}
                         alt={event.title}
-                        className="w-full h-full object-contain absolute inset-0 hover:scale-105 transition-transform duration-500 p-4 sm:p-6 md:p-8"
+                        className="w-full h-full object-contain absolute inset-0 hover:scale-105 transition-transform duration-500"
                         loading="lazy"
                       />
                     </div>
