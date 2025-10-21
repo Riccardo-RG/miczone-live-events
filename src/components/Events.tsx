@@ -29,7 +29,7 @@ const Events: React.FC = () => {
       id: 5,
       title: "Miczone Next Wave",
       artist: "Live Music & Dj Set",
-      date: "25 Novembre, 2025",
+      date: "26 Ottobre, 2025",
       location: "Lizard Club",
       description:
         "Una serata esplosiva con musica dal vivo e dj set. Non perdere l'occasione di vivere un'esperienza unica!",
